@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    StoryGenerator *sg = [StoryGenerator alloc[init]];
 }
 
 - (void)didReceiveMemoryWarning {

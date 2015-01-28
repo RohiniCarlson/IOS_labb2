@@ -14,6 +14,7 @@
 		449244351A7985F000B28A6B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 449244341A7985F000B28A6B /* Images.xcassets */; };
 		449244381A7985F000B28A6B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 449244361A7985F000B28A6B /* LaunchScreen.xib */; };
 		449244441A7985F000B28A6B /* Labb2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 449244431A7985F000B28A6B /* Labb2Tests.m */; };
+		4492444F1A7988E400B28A6B /* StoryGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4492444E1A7988E400B28A6B /* StoryGenerator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		4492443D1A7985F000B28A6B /* Labb2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Labb2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		449244421A7985F000B28A6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		449244431A7985F000B28A6B /* Labb2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Labb2Tests.m; sourceTree = "<group>"; };
+		4492444D1A7988E400B28A6B /* StoryGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryGenerator.h; sourceTree = "<group>"; };
+		4492444E1A7988E400B28A6B /* StoryGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryGenerator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,8 @@
 				449244341A7985F000B28A6B /* Images.xcassets */,
 				449244361A7985F000B28A6B /* LaunchScreen.xib */,
 				449244271A7985F000B28A6B /* Supporting Files */,
+				4492444D1A7988E400B28A6B /* StoryGenerator.h */,
+				4492444E1A7988E400B28A6B /* StoryGenerator.m */,
 			);
 			path = Labb2;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 				449244301A7985F000B28A6B /* ViewController.m in Sources */,
 				4492442D1A7985F000B28A6B /* AppDelegate.m in Sources */,
 				4492442A1A7985F000B28A6B /* main.m in Sources */,
+				4492444F1A7988E400B28A6B /* StoryGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

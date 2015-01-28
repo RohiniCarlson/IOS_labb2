@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StoryGenerator.h"
 
 @interface ViewController : UIViewController
 
