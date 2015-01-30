@@ -48,9 +48,9 @@ NSArray *adverbs;
                   @"a drum",@"a trumpet",@"a piano"];
         clothes = @[@"hat",@"tie",@"shoes",@"socks",@"hair-band",@"jeans", @"shirt",
                     @"bikini",@"bathing-shorts",@"tuxedo",@"ball-gown"];
-        noises = @[@"whoosh",@"splotch",@"splat",@"twack",@"boom",@"crash",
-                   @"squeak",@"roar",@"bark",@"grunt",@"moan",@"groan"];
-        foreignWords = @[@"caramba", @"mammamia"];
+        noises = @[@"Whoosh!",@"Splotch!",@"Splat!",@"Twack!",@"Boom!",@"Crash!",
+                   @"Squeak!",@"Roar!",@"Booo!",@"Aaah!",@"Bwahaha!",@"Eeek!"];
+        foreignWords = @[@"Caramba!", @"Mamma Mia!",@"Santa Maria!",@"Schmutzig!",@"Utrolige!"];
         bodyParts = @[@"eyes",@"hair",@"legs",@"nose",@"cheeks",@"hands",@"elbows",
                       @"fingers",@"toes", @"ears", @"shoulders"];
         colors = @[@"red",@"green",@"blue",@"brown",@"purple",@"orange",@"black",
@@ -62,7 +62,7 @@ NSArray *adverbs;
                      @"Storm",@"Elektra",@"Valkyrie",@"Scarlet-witch", @"Cat-woman"];
         names = @[@"Sean Banan",@"Popeye",@"Handyman Manny",@"Bob the Builder",
                   @"Postman Pat",@"Snoopy",@"Winnie the Pooh",@"Lagoona Blue",
-                  @"Frankie Stein",@"Cleo de Nile",@"Shakira",@"Clawdeena Wolf"
+                  @"Frankie Stein",@"Cleo de Nile",@"Shakira",@"Clawdeena Wolf",
                   @"Ghoulia Yelps",@"Draculaura",@"Abbey Bominable",
                   @"Spectra Vondergeist"];
         devices = @[@"a vaccuum-cleaner",@"a lawn-mower",@"a bus",@"a train",
@@ -72,8 +72,8 @@ NSArray *adverbs;
         drinks = @[@"diet-coke",@"fanta",@"sprite",@"tea",@"coffee",@"milk",
                    @"hot-chocolate",@"latte",@"espresso",@"water",@"vodka"];
         exclamations = @[@"Oops!",@"Yikes!",@"Help!",@"Leaping Lizards!",
-                         @"Jeepers!",@"Creepers!",@"Blistering Barnacles!",@"Eek!",
-                         @"Oh Rats!",@"Shiver Me Timbers!",@"Ouch!"];
+                         @"Jeepers!",@"Creepers!",@"Blistering Barnacles!",
+                         @"Oh Rats!",@"Shiver Me Timbers!",@"Jiminy Cricket!",@"Great Balls of Fire!",@"Thundering Typhoons!",@"Bazinga!"];
         adverbs = @[@"quickly",@"slowly",@"roughly",@"carefully",@"meaningfully",
                     @"lovingly",@"warmly"];
     }
@@ -112,13 +112,23 @@ NSArray *adverbs;
     NSString *noise = [self randomElement:noises];
     NSString *noise2 = [self randomElement:noises];
     
+    unichar theChar = [bodyPartBandit2 characterAtIndex:bodyPartBandit2.length-1];
+    
+    if ('e' == theChar){
+        bodyPartBandit2 = [bodyPartBandit2 stringByAppendingString:@"s"];
+    }
+    theChar = [bodyPartBandit3 characterAtIndex:bodyPartBandit3.length-1];
+    if ('e' == theChar){
+        bodyPartBandit3 = [bodyPartBandit3 stringByAppendingString:@"s"];
+    }
+    
     NSString *paragraph1 = [NSString stringWithFormat:@"%@ and %@ were the bravest superheroes in Gothenburg. They flew around the city dressed in their distinctive superhero costumes. %@ wore his famous %@ %@ and %@ wore her equally famous and well known %@ %@.", heroe,heroine,heroe,colorHim,clothingHim,heroine,colorHer,clothingHer];
     
     NSString *paragraph2 = [NSString stringWithFormat:@"Last week they rescued %@ before it could get run over by %@ and then they rescued %@ just before it was made to walk the plank by the %@ Captain %@ %@ and his motely crew of %@ pirates.",animal,device,animal2,adjectiveHorror,colorPirate,bodyPartCaptain,adjectiveHorror2 ];
     
-    NSString *paragraph3 = [NSString stringWithFormat:@"One %@ %@, they saw that %@ was about to be used as target practice by a trigger happy gang of lawless bandits. %@ yelled \"%@!\" %@ cried out \"%@!\" and swooped %@ down from the sky!",season,timeOfDay,name,heroe,exclamation,heroine,foreignWord,adverb];
+    NSString *paragraph3 = [NSString stringWithFormat:@"One %@ %@, they saw that %@ was about to be used as target practice by a trigger happy gang of lawless bandits. %@ yelled \"%@\" %@ cried out \"%@\" and swooped %@ down from the sky!",season,timeOfDay,name,heroe,exclamation,heroine,foreignWord,adverb];
     
-    NSString *paragraph4 = [NSString stringWithFormat:@"%@ got hold of one bandit's %@ and administered over %@ punches. The air was filled with the sound of loud %@(s). The bandit screamed \"%@!\" and ran away. %@ caught two bandits by their %@(s) and immediately started to box their %@(s). With a massive %@(s) they lost consciousness.",heroe,bodyPartBandit1,number,noise,exclamation2,heroine,bodyPartBandit2,bodyPartBandit3,noise2];
+    NSString *paragraph4 = [NSString stringWithFormat:@"%@ got hold of one bandit's %@ and administered over %@ punches. The air was filled with the sound of \"%@\" \"%@\" The bandit screamed \"%@\" and ran away. %@ caught two bandits by their %@ and immediately started to box their %@. With a massive \"%@\" they lost consciousness.",heroe,bodyPartBandit1,number,noise,noise,exclamation2,heroine,bodyPartBandit2,bodyPartBandit3,noise2];
     
     NSString *paragraph5 = [NSString stringWithFormat:@"The rest of the bandits just turned tail and ran away as fast as their legs could carry them. They were never ever seen in Gothenburg again! %@ was very happy and grateful to be rescued by the super duo!",name];
     
@@ -146,21 +156,28 @@ NSArray *adverbs;
     NSString *colorHisBody = [self randomElement:colors];
     NSString *bodyPartHis = [self randomElement:bodyParts];
     NSString *adjectiveRomance = [self randomElement:adjectivesRomance];
-    NSString *adjectiveRomance2 = [self randomElement:adjectivesRomance];
     NSString *adjectiveHorror = [self randomElement:adjectivesHorror];
     NSString *foodItem = [self randomElement:food];
     NSString *foodItem2 = [self randomElement:food];
     NSString *noun = [self randomElement:nouns];
     NSString *noun2 = [self randomElement:nouns];
-    NSString *adverb3 = [self randomElement:adverbs];
+    NSString *adjectiveRomance2 = [self randomElement:adjectivesRomance];
+    NSString *adjectiveRomance3 = [self randomElement:adjectivesRomance];
     
+    NSString *paragraph1 = [NSString stringWithFormat:@"One %@ %@, %@ saw %@ %@ walking down the street. %@ had %@ %@ and %@ %@. She was wearing a %@ %@ and a %@ %@. ”I must talk to her”, he thought. But just as %@ prepared to approach %@, %@ crossed her path. She gasped and cried out, \"%@\" %@ used his super powers to %@ reach her side and catch her before she fainted.",season,timeOfDay,heroe,heroine,adverb,heroine,colorHerBody,bodyPartHer,colorHerBody2,bodyPartHer2,colorClothingHer,clothingHer,colorClothingHer2,clothingHer2,heroe,heroine,animal,exclamation,heroe,adverb2];
+   
+    unichar theChar = [animal characterAtIndex:0];
     
-    NSString *paragraph1 = [NSString stringWithFormat:@"One %@ %@, %@ saw %@ %@ walking down the street. %@ had %@ %@ and %@ %@. She was wearing a %@ %@ and %@ %@. ”I must talk to her”, he thought. But just as %@ prepared to approach %@, %@ crossed her path. She gasped and cried out, \"%@!\" %@ used his super powers to %@ reach her side and catch her before she fainted.",season,timeOfDay,heroe,heroine,adverb,heroine,colorHerBody,bodyPartHer,colorHerBody2,bodyPartHer2,colorClothingHer,clothingHer,colorClothingHer2,clothingHer2,heroe,heroine,animal,exclamation,heroe,adverb2];
+    if ('a' == theChar){
+        animal = [animal substringFromIndex:2];
+    }
+    NSString *paragraph2 = [NSString stringWithFormat:@"When %@ opened her eyes, the first thing she saw was %@'s %@ %@. \"Oh, my!\" she thought, \"I have never seen such %@ %@\". She smiled at him and said \"Thank you so much for rescuing me from that %@ %@\".",heroine,heroe,colorHisBody,bodyPartHis,adjectiveRomance,bodyPartHis,adjectiveHorror,animal];
     
-    NSString *paragraph2 = [NSString stringWithFormat:@"When %@ opened her eyes, the first thing she saw was %@'s %@ %@. \"Oh, my!\" she thought, \"I have never seen such %@ %@, he sure is %@\". She smiled at him and said \"Thank you so much for rescuing me from that %@ %@\". %@ felt like a real superhero!",heroine,heroe,colorHisBody,bodyPartHis,adjectiveRomance,bodyPartHis,adjectiveRomance2,adjectiveHorror,animal,heroe];
+    NSString *paragraph3 = [NSString stringWithFormat: @"They made their way to the local pub, hand in hand. He ordered a plate of %@ and she ordered a bowl of %@. While they waited for their order to arrive, %@ asked %@ what her favorite hobby was. \"I just love to twirl %@ in the air\" she said. \"Wow! That is impressive!\" said %@, \"I just can't get enough of jumping over %@.\" \"Incredible!\", said %@.",foodItem,foodItem2,heroe,heroine,noun,heroe,noun2,heroine];
     
-    NSString *paragraph3 = [NSString stringWithFormat: @"They made their way to the local pub, hand in hand. He ordered a plate of %@ and she ordered a bowl of %@. While they waited for their order to arrive, %@ asked %@ what her favorite hobby was. \"I just love to twirl %@ in the air\" she said. \"Wow! That is impressive!\" said %@, \"I just can't get enough of jumping over %@.\" \"Incredible!\", said %@. They looked %@ at each other. It was the beginning of a wonderful partnership!",foodItem,foodItem2,heroe,heroine,noun,heroe,noun2,heroine,adverb3];
-    return [NSString stringWithFormat:@"%@\n\n%@\n\n%@",paragraph1,paragraph2,paragraph3];
+   NSString *paragraph4 = [NSString stringWithFormat: @"Later on they took a stroll along the beach. It was a beautiful, clear night. %@ turned to %@ and said, \"You are so %@! I think I am in love with you!\" %@ blushed prettily and said, \"I think you are very %@ and I have been waiting for you all my life!\" %@ took %@ in his arms and kissed her deeply. It was love!", heroe,heroine,adjectiveRomance2,heroine,adjectiveRomance3,heroe,heroine];
+    
+    return [NSString stringWithFormat:@"%@\n\n%@\n\n%@\n\n%@",paragraph1,paragraph2,paragraph3,paragraph4];
 }
 
 -(NSString*)createHorrorStory{
@@ -185,17 +202,17 @@ NSArray *adverbs;
     NSString *heroe = [self randomElement:heroes];
     NSString *heroine = [self randomElement:heroines];
     NSString *bodyPart3 = [self randomElement:bodyParts];
+    NSString *adverb = [self randomElement:adverbs];
     
-    NSString *paragraph1 = [NSString stringWithFormat:@"%@ will never forget that %@ night. %@ was relaxing with a large mug of his/her favorite drink, %@, when  suddenly he/she heard a loud %@ from the basement.",name,adjectiveHorror,name,drink,noise];
+    NSString *paragraph1 = [NSString stringWithFormat:@"%@ will never forget that %@ night. %@ was relaxing with a large mug of %@, when suddenly there was a loud \"%@\" from the basement.",name,adjectiveHorror,name,drink,noise];
     
-    NSString *paragraph2 = [NSString stringWithFormat:@"%@ jumped up, grabbed a flashlight and went to investigate. He/She opened the door just a bit and pointed his/her flashlight, only to see a pair of %@ eyes shining in the light. %@ gasped and yelped \"%@!\". There was another loud %@ and %@ turned and ran back up the stairs.",name,color,name,exclamation,noise,name];
+    NSString *paragraph2 = [NSString stringWithFormat:@"%@ jumped up, grabbed a flashlight and went to investigate. %@ opened the basement door %@ and pointed the flashlight through the crack, only to see a pair of %@ eyes shining in the light. %@ gasped and yelped \"%@\". There was another loud \"%@\" and %@ turned and ran back up the stairs.",name,name,adverb,color,name,exclamation,noise,name];
     
-    NSString *paragraph3 = [NSString stringWithFormat:@"%@ could hear the %@ creature just behind him/her. \"I should've locked the door, %@!\" thought %@, but it was too late. %@ turned around and faced the %@ creature. It was huge and slimy, with %@ %@ and %@ splotches all over. %@ grabbed %@ and threw it at the monster, but the %@ beast just swallowed it whole! Next, %@ threw %@ at it, but it just bounced off of his %@ %@.",name,adjectiveHorror2,foreignWord,name,name,adjectiveHorror3,color2,bodyPart,color3,name,noun,adjectiveHorror4,name,noun2,adjectiveHorror5,bodyPart2];
+    NSString *paragraph3 = [NSString stringWithFormat:@"%@ could hear the %@ creature just behind. \"I should've locked the door, %@\" thought %@, but it was too late. %@ turned around and faced the %@ creature. It was huge and slimy, with %@ %@ and %@ splotches all over. %@ grabbed %@ and threw it at the monster, but the %@ beast just swallowed it whole! Next, %@ threw %@ at it, but it just bounced off his %@ %@.",name,adjectiveHorror2,foreignWord,name,name,adjectiveHorror3,color2,bodyPart,color3,name,noun,adjectiveHorror4,name,noun2,adjectiveHorror5,bodyPart2];
     
-    NSString *paragraph4 = [NSString stringWithFormat:@"%@ began to think this is it, when with a shout of \"%@!\" in jumped %@ and %@ through %@'s window. They punched the slimy creature on it's %@. It just collapsed and melted into a pool of slime. %@ thanked %@ & %@ for saving his/her life. ”That is what we do!”, they said before flying off into the night!",name,exclamation2,heroe,heroine,name,bodyPart3,name,heroe,heroine];
+    NSString *paragraph4 = [NSString stringWithFormat:@"%@ began to think \"I'm a gonner!\", when with a shout of \"%@\" in jumped %@ and %@ through %@'s window. They punched the slimy creature on it's %@. It just collapsed and melted into a pool of slime. %@ thanked %@ & %@ for coming to the rescue. \"That is what we do!\", they said before flying off into the night!",name,exclamation2,heroe,heroine,name,bodyPart3,name,heroe,heroine];
     
     return [NSString stringWithFormat:@"%@\n\n%@\n\n%@\n\n%@",paragraph1,paragraph2,paragraph3,paragraph4];
-
 }
 
 @end
