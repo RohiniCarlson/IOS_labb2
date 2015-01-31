@@ -90,15 +90,13 @@ NSMutableArray *uniqueWords;
 }
 
 -(NSString*)addPlural:(NSString*)word withEnding:(unichar)character{
-    
     if ('e' == character){
         word = [word stringByAppendingString:@"s"];
     }
     return word;
 }
 
--(NSString*)addPrefix:(unichar)character toWord:(NSString*)word{
-    
+-(NSString*)addPrefix:(unichar)character toWord:(NSString*)word{    
     if('s'!= character){
         word = [NSString stringWithFormat:@"a %@",word];
     }
@@ -179,7 +177,7 @@ NSMutableArray *uniqueWords;
     NSString *noun2 = [self randomElement:nouns];
     NSString *adjectiveRomance2 = [self randomElement:adjectivesRomance];
     NSString *adjectiveRomance3 = [self randomElement:adjectivesRomance];
-        
+    
     colorClothingHer = [self addPrefix:[clothingHer characterAtIndex:clothingHer.length-1] toWord:colorClothingHer];
     
     colorClothingHer2 = [self addPrefix:[clothingHer2 characterAtIndex:clothingHer2.length-1] toWord:colorClothingHer2];
