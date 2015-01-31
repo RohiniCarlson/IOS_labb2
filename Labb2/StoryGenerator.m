@@ -30,6 +30,7 @@ NSArray *food;
 NSArray *drinks;
 NSArray *exclamations;
 NSArray *adverbs;
+NSMutableArray *uniqueWords;
 
 -(instancetype)init {
     self = [super init];
@@ -80,11 +81,32 @@ NSArray *adverbs;
     return self;
 }
 -(NSString*)randomElement: (NSArray*) array {
-    return array[arc4random() % array.count];
+    NSString *randomWord = array[arc4random() % array.count];
+    while ([uniqueWords containsObject:randomWord]) {
+        randomWord = array[arc4random() % array.count];
+    }
+    [uniqueWords addObject:randomWord];
+    return randomWord;
+}
+
+-(NSString*)addPlural:(NSString*)word withEnding:(unichar)character{
+    
+    if ('e' == character){
+        word = [word stringByAppendingString:@"s"];
+    }
+    return word;
+}
+
+-(NSString*)addPrefix:(unichar)character toWord:(NSString*)word{
+    
+    if('s'!= character){
+        word = [NSString stringWithFormat:@"a %@",word];
+    }
+    return word;
 }
 
 -(NSString*)createActionStory {
-    
+    uniqueWords = [NSMutableArray new];
     NSString *heroe = [self randomElement:heroes];
     NSString *heroine = [self randomElement:heroines];
     NSString *colorHim = [self randomElement:colors];
@@ -112,15 +134,9 @@ NSArray *adverbs;
     NSString *noise = [self randomElement:noises];
     NSString *noise2 = [self randomElement:noises];
     
-    unichar theChar = [bodyPartBandit2 characterAtIndex:bodyPartBandit2.length-1];
+    bodyPartBandit2 = [self addPlural:bodyPartBandit2 withEnding:[bodyPartBandit2 characterAtIndex:bodyPartBandit2.length-1]];
     
-    if ('e' == theChar){
-        bodyPartBandit2 = [bodyPartBandit2 stringByAppendingString:@"s"];
-    }
-    theChar = [bodyPartBandit3 characterAtIndex:bodyPartBandit3.length-1];
-    if ('e' == theChar){
-        bodyPartBandit3 = [bodyPartBandit3 stringByAppendingString:@"s"];
-    }
+    bodyPartBandit3 = [self addPlural:bodyPartBandit3 withEnding:[bodyPartBandit3 characterAtIndex:bodyPartBandit3.length-1]];
     
     NSString *paragraph1 = [NSString stringWithFormat:@"%@ and %@ were the bravest superheroes in Gothenburg. They flew around the city dressed in their distinctive superhero costumes. %@ wore his famous %@ %@ and %@ wore her equally famous and well known %@ %@.", heroe,heroine,heroe,colorHim,clothingHim,heroine,colorHer,clothingHer];
     
@@ -136,7 +152,7 @@ NSArray *adverbs;
 }
 
 -(NSString*)createLoveStory{
-    
+    uniqueWords = [NSMutableArray new];
     NSString *season = [self randomElement:seasons];
     NSString *timeOfDay = [self randomElement:timesOfDay];
     NSString *heroe = [self randomElement:heroes];
@@ -163,14 +179,19 @@ NSArray *adverbs;
     NSString *noun2 = [self randomElement:nouns];
     NSString *adjectiveRomance2 = [self randomElement:adjectivesRomance];
     NSString *adjectiveRomance3 = [self randomElement:adjectivesRomance];
+        
+    colorClothingHer = [self addPrefix:[clothingHer characterAtIndex:clothingHer.length-1] toWord:colorClothingHer];
     
-    NSString *paragraph1 = [NSString stringWithFormat:@"One %@ %@, %@ saw %@ %@ walking down the street. %@ had %@ %@ and %@ %@. She was wearing a %@ %@ and a %@ %@. ”I must talk to her”, he thought. But just as %@ prepared to approach %@, %@ crossed her path. She gasped and cried out, \"%@\" %@ used his super powers to %@ reach her side and catch her before she fainted.",season,timeOfDay,heroe,heroine,adverb,heroine,colorHerBody,bodyPartHer,colorHerBody2,bodyPartHer2,colorClothingHer,clothingHer,colorClothingHer2,clothingHer2,heroe,heroine,animal,exclamation,heroe,adverb2];
+    colorClothingHer2 = [self addPrefix:[clothingHer2 characterAtIndex:clothingHer2.length-1] toWord:colorClothingHer2];
+    
+    NSString *paragraph1 = [NSString stringWithFormat:@"One %@ %@, %@ saw %@ %@ walking down the street. %@ had %@ %@ and %@ %@. She was wearing %@ %@ and %@ %@. ”I must talk to her”, he thought. But just as %@ prepared to approach %@, %@ crossed her path. She gasped and cried out, \"%@\" %@ used his super powers to %@ reach her side and catch her before she fainted.",season,timeOfDay,heroe,heroine,adverb,heroine,colorHerBody,bodyPartHer,colorHerBody2,bodyPartHer2,colorClothingHer,clothingHer,colorClothingHer2,clothingHer2,heroe,heroine,animal,exclamation,heroe,adverb2];
    
     unichar theChar = [animal characterAtIndex:0];
     
     if ('a' == theChar){
         animal = [animal substringFromIndex:2];
     }
+    
     NSString *paragraph2 = [NSString stringWithFormat:@"When %@ opened her eyes, the first thing she saw was %@'s %@ %@. \"Oh, my!\" she thought, \"I have never seen such %@ %@\". She smiled at him and said \"Thank you so much for rescuing me from that %@ %@\".",heroine,heroe,colorHisBody,bodyPartHis,adjectiveRomance,bodyPartHis,adjectiveHorror,animal];
     
     NSString *paragraph3 = [NSString stringWithFormat: @"They made their way to the local pub, hand in hand. He ordered a plate of %@ and she ordered a bowl of %@. While they waited for their order to arrive, %@ asked %@ what her favorite hobby was. \"I just love to twirl %@ in the air\" she said. \"Wow! That is impressive!\" said %@, \"I just can't get enough of jumping over %@.\" \"Incredible!\", said %@.",foodItem,foodItem2,heroe,heroine,noun,heroe,noun2,heroine];
@@ -181,6 +202,7 @@ NSArray *adverbs;
 }
 
 -(NSString*)createHorrorStory{
+    uniqueWords = [NSMutableArray new];
     NSString *name = [self randomElement:names];
     NSString *adjectiveHorror = [self randomElement:adjectivesHorror];
     NSString *drink = [self randomElement:drinks];
