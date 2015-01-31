@@ -96,11 +96,20 @@ NSMutableArray *uniqueWords;
     return word;
 }
 
--(NSString*)addPrefix:(unichar)character toWord:(NSString*)word{    
-    if('s'!= character){
-        word = [NSString stringWithFormat:@"a %@",word];
+-(NSString*)addPrefix:(unichar)character toWord:(NSString*)word{
+    if ('r'== character){
+        return word;
+    } else {
+        if('s'!= character){
+            if ('o' == [word characterAtIndex:0]){
+                word = [NSString stringWithFormat:@"an %@",word];
+            }
+            else {
+                word = [NSString stringWithFormat:@"a %@",word];
+            }
+        }
+        return word;
     }
-    return word;
 }
 
 -(NSString*)createActionStory {
@@ -227,6 +236,8 @@ NSMutableArray *uniqueWords;
     NSString *paragraph1 = [NSString stringWithFormat:@"%@ will never forget that %@ night. %@ was relaxing with a large mug of %@, when suddenly there was a loud \"%@\" from the basement.",name,adjectiveHorror,name,drink,noise];
     
     NSString *paragraph2 = [NSString stringWithFormat:@"%@ jumped up, grabbed a flashlight and went to investigate. %@ opened the basement door %@ and pointed the flashlight through the crack, only to see a pair of %@ eyes shining in the light. %@ gasped and yelped \"%@\". There was another loud \"%@\" and %@ turned and ran back up the stairs.",name,name,adverb,color,name,exclamation,noise,name];
+    
+    color2 = [self addPrefix:[bodyPart characterAtIndex:bodyPart.length-1] toWord:color2];
     
     NSString *paragraph3 = [NSString stringWithFormat:@"%@ could hear the %@ creature just behind. \"I should've locked the door, %@\" thought %@, but it was too late. %@ turned around and faced the %@ creature. It was huge and slimy, with %@ %@ and %@ splotches all over. %@ grabbed %@ and threw it at the monster, but the %@ beast just swallowed it whole! Next, %@ threw %@ at it, but it just bounced off his %@ %@.",name,adjectiveHorror2,foreignWord,name,name,adjectiveHorror3,color2,bodyPart,color3,name,noun,adjectiveHorror4,name,noun2,adjectiveHorror5,bodyPart2];
     
